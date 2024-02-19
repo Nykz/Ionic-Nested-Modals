@@ -1,0 +1,29 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Nested Modal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button id="modal1" expand="block">Open Modal 1</ion-button>
+
+    <ion-modal #modal1 trigger="modal1" [presentingElement]="presentingElement">
+      <ng-template>
+        <app-comp1
+          (enter)="isSecondModalOpen = true"
+          (exit)="modal1.dismiss()"
+        ></app-comp1>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal
+      #modal2
+      [isOpen]="isSecondModalOpen"
+      [presentingElement]="presentingElement"
+    >
+      <ng-template>
+        <app-comp2 (exit)="isSecondModalOpen = false"></app-comp2>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</div>
